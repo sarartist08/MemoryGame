@@ -1,7 +1,21 @@
 /*
  * Create a list that holds all of your cards
  */
-
+class Card {
+	constuctor(card, num) {
+		let cardID  = card.id + '-' + num;
+		this.id = '#' + card.id + "-" + num;
+		this.image = card.image;
+		this.html = '<article class="card" id="${cardID}"> 
+			<div class="card-back">
+				<img src="img/${this.image}" class="card-image">
+			</div>
+			<div class="card-front">
+				<img src="img/disney.png" class="card-image">
+			</div>
+		</article>';
+	}
+}
 
 /*
  * Display the cards on the page
