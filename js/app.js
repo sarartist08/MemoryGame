@@ -1,4 +1,5 @@
 let symbols = ['bicycle', 'bicycle', 'leaf', 'leaf', 'cube', 'cube', 'anchor', 'anchor', 'paper-plane-o', 'paper-plane-o', 'bolt', 'bolt', 'bomb', 'bomb', 'diamond', 'diamond'],
+	characters = []
 	opened = [],
 	match = 0,
 	moves = 0,
@@ -62,10 +63,10 @@ function shuffle(array) {
 //Set Rating and Final Score
 let setRating = (moves) => {
 	let score = 3;
-	if (moves <= 10) {
+	if (moves <= 12) {
 		$ratingStars.eq(3).removeClass('fa-star').addClass('fa-star-o');
 		score = 3;
-	} else if (moves >10 && moves <= 14) {
+	} else if (moves >12 && moves <= 16) {
 		$ratingStars.eq(2).removeClass('fa-star').addClass('fa-star-o');
 		score = 2;
 	} else {
