@@ -103,6 +103,7 @@ let addClkListener = () => {
 		let $this = $(this), card = $this.context.innerHTML;
 		if ($this.hasClass('open')) { return true; };
 		
+		//check for match
 		$this.addClass('open show');
 			opened.push(card);
 		if (opened.length > 1) {
@@ -126,6 +127,7 @@ let addClkListener = () => {
 				setRating(moves);
 				$moveNum.html(moves);
 		}
+
 		//End Game if all cards matched
 		if (match ===8) {
 			setRating(moves);
@@ -136,3 +138,25 @@ let addClkListener = () => {
 		}
 	});
 };
+
+//Restart Popup
+$restart.bind('click', ()=>{
+	swal({
+		allowEscapeKey: false,
+		allowOutsideClick: false,
+		title: "Are you sure?",
+		text: "Your progress will be lost!",
+		type: 'warning',
+		showCancelButton: "true",
+		confirmButtonText: "Yes, Restart Game"
+	}).then((isConfirm)=> {
+		if(isConfirm) {
+			clicks = 0;
+			clearInterval(timer);
+			start();
+		};
+	});
+});
+
+//Start the Game
+start();
