@@ -74,3 +74,22 @@ let setRating = (moves) => {
 	};
 	return { score };
 };
+
+//End Game Popup
+let endGame = (moves,score) => {
+	let msg = score == 1 ? score + ' Star': score + ' Stars';
+	swal({
+		allowEscapeKey: false,
+		allowOutsieClick: false,
+		title: "Congratulations! You Won!",
+		text: "With "+moves+" Moves and "+msg+"!",
+		type: 'success',
+		confirmButtonText: "Play Again!"
+	}).then((isConfirm)=>{
+		if (isConfirm) {
+			clicks = 0;
+			clearInterval(timer);
+			start();
+		}
+	});
+};
