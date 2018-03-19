@@ -1,5 +1,4 @@
 let symbols = ['bicycle', 'bicycle', 'leaf', 'leaf', 'cube', 'cube', 'anchor', 'anchor', 'paper-plane-o', 'paper-plane-o', 'bolt', 'bolt', 'bomb', 'bomb', 'diamond', 'diamond'],
-	characters = []
 	opened = [],
 	match = 0,
 	moves = 0,
