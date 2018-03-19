@@ -1,28 +1,30 @@
-/*
- * Create a list that holds all of your cards
- */
-class Card {
-	constuctor(card, num) {
-		let cardID  = card.id + '-' + num;
-		this.id = '#' + card.id + "-" + num;
-		this.image = card.image;
-		this.html = '<article class="card" id="${cardID}"> 
-			<div class="card-back">
-				<img src="img/${this.image}" class="card-image">
-			</div>
-			<div class="card-front">
-				<img src="img/disney.png" class="card-image">
-			</div>
-		</article>';
-	}
-}
+let symbols = ['bycycle', 'bicycle', 'leaf', 'leaf', 'cube', 'cube', 'anchor', 'anchor', 'paper-plane-o', 'paper-plane-o', 'bolt', 'bolt', 'bomb', 'bomb', 'diamond', 'diamond'],
+	opened = [],
+	match = 0,
+	moves = 0,
+	clicks = 0,
+	$deck = jQuery('.deck'),
+	$scorePanel = $('#score-panel'),
+	$moveNum = $('.moves'),
+	$ratingStars = $('i'),
+	$restart = $('.restart'),
+	timer;
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+let gameTimer = () => {
+	let startTime = new Date().getTime();
+
+	timer = setInterval(() => {
+		let now = new Date().getTime();
+		let elapsed = now - startTime;
+		let minutes = Math.floor((elapsed % (1000 *60 *60))/ (1000*60));
+		let seconds = Math.floor((elapsed % (1000 *60))/1000);
+		if (seconds < 10) {
+			seconds = "0" + seconds;
+		}
+		let currentTime = minutes+ ":" +seconds;
+		$(".clock").text(currentTime)
+	}, 750);
+};
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
