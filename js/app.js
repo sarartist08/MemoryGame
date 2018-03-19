@@ -1,4 +1,4 @@
-let symbols = ['bycycle', 'bicycle', 'leaf', 'leaf', 'cube', 'cube', 'anchor', 'anchor', 'paper-plane-o', 'paper-plane-o', 'bolt', 'bolt', 'bomb', 'bomb', 'diamond', 'diamond'],
+let symbols = ['bicycle', 'bicycle', 'leaf', 'leaf', 'cube', 'cube', 'anchor', 'anchor', 'paper-plane-o', 'paper-plane-o', 'bolt', 'bolt', 'bomb', 'bomb', 'diamond', 'diamond'],
 	opened = [],
 	match = 0,
 	moves = 0,
@@ -59,3 +59,18 @@ function shuffle(array) {
     return array;
 }
 
+//Set Rating and Final Score
+let setRating = (moves) => {
+	let score = 3;
+	if (moves <= 10) {
+		$ratingStars.eq(3).removeClass('fa-star').addClass('fa-star-o');
+		score = 3;
+	} else if (moves >10 && moves <= 14) {
+		$ratingStars.eq(2).removeClass('fa-star').addClass('fa-star-o');
+		score = 2;
+	} else {
+		$ratingStars.eq(1).removeClass('fa-star').addClass('fa-star-o');
+		score = 1;
+	};
+	return { score };
+};
