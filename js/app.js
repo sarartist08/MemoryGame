@@ -93,3 +93,46 @@ let endGame = (moves,score) => {
 		}
 	});
 };
+
+//card setup
+let addClkListener = () => {
+	$deck.find('.card:not(".match, .open")').bind('click', function(){
+		clicks++;
+		clicks == 1 ? gameTimer() :'';
+		if ($('.show').length > 1) { return true; };
+		let $this = $(this), card = $this.context.innerHTML;
+		if ($this.hasClass('open')) { return true; };
+		
+		$this.addClass('open show');
+			opened.push(card);
+		if (opened.length > 1) {
+			if (card === opened[0]) {
+				$deck.find('.open').addClass('match animated infinite rubberBand');
+				setTimeout(()=> {
+					$deck.find('.match').removeClass('open show animated inifinte rubberBand');
+				}, 800);
+				match++;
+			} else {
+				$deck.find('.open').addClass('notmatch animated infinite wobble');
+				setTimeout(()=> {
+					$deck.find('.open').removeClass('animated infinite wobble');
+				}, 800 / 1.5);
+				setTimeout(()=> {
+					$deck.find('.open').removeClass('open show notmatch animated infinite wobble');
+				}, 800);
+			}
+			opened = [];
+				moves++;
+				setRating(moves);
+				$moveNum.html(moves);
+		}
+		//End Game if all cards matched
+		if (match ===8) {
+			setRating(moves);
+			let score = setRating(moves).score;
+			setTimeout(()=> {
+				endGame(moves, score);
+			}, 500);
+		}
+	});
+};
