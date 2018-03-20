@@ -135,6 +135,7 @@ let addClkListener = () => {
 			setTimeout(()=> {
 				endGame(moves, score);
 			}, 500);
+			clearInterval(timer)
 		}
 	});
 };
