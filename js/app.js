@@ -22,7 +22,7 @@ let gameTimer = () => {
 		if (seconds < 10) {
 			seconds = "0" + seconds;
 		}
-		let currentTime = minutes+ ":" +seconds;
+		currentTime = minutes+ ":" +seconds;
 		$(".clock").text(currentTime)
 	}, 750);
 };
@@ -30,6 +30,7 @@ let gameTimer = () => {
 
 //start the game
 let start = () => {
+	opened = []
 	let cards = shuffle(symbols);
 	$deck.empty();
 	match = 0;
@@ -76,13 +77,13 @@ let setRating = (moves) => {
 };
 
 //End Game Popup
-let endGame = (moves,score) => {
+let endGame = (moves,score,timer) => {
 	let msg = score == 1 ? score + ' Star': score + ' Stars';
 	swal({
 		allowEscapeKey: false,
 		allowOutsieClick: false,
 		title: "Congratulations! You Won!",
-		text: "With "+moves+" Moves and "+msg+"!",
+		text: "With "+moves+" Moves and "+msg+ " in " +currentTime+ "!",
 		type: 'success',
 		confirmButtonText: "Play Again!"
 	}).then((isConfirm)=>{
@@ -133,7 +134,7 @@ let addClkListener = () => {
 			setRating(moves);
 			let score = setRating(moves).score;
 			setTimeout(()=> {
-				endGame(moves, score);
+				endGame(moves, score, timer);
 			}, 500);
 			clearInterval(timer)
 		}
